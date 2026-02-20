@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, CheckCircle, X } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, X, Upload, Image as ImageIcon } from 'lucide-react';
 import heroImage from '../assets/04611d2b-e43e-42dd-b4bf-97a949fb357c.png';
 
 export default function Contact() {
@@ -39,6 +39,9 @@ function ContactSection() {
     message: '',
   });
 
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [imagePreviewUrls, setImagePreviewUrls] = useState<string[]>([]);
+  const [uploadError, setUploadError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [isError, setIsError] = useState(false);
@@ -52,6 +55,50 @@ function ContactSection() {
     });
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setUploadError('');
+
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    const MAX_FILES = 3;
+
+    if (selectedImages.length + files.length > MAX_FILES) {
+      setUploadError(`U kunt maximaal ${MAX_FILES} afbeeldingen uploaden`);
+      return;
+    }
+
+    const validFiles: File[] = [];
+    const newPreviewUrls: string[] = [];
+
+    for (const file of files) {
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        setUploadError('Alleen JPEG, PNG, GIF en WebP afbeeldingen zijn toegestaan');
+        continue;
+      }
+
+      if (file.size > MAX_FILE_SIZE) {
+        setUploadError('Afbeeldingen mogen maximaal 5MB groot zijn');
+        continue;
+      }
+
+      validFiles.push(file);
+      newPreviewUrls.push(URL.createObjectURL(file));
+    }
+
+    if (validFiles.length > 0) {
+      setSelectedImages([...selectedImages, ...validFiles]);
+      setImagePreviewUrls([...imagePreviewUrls, ...newPreviewUrls]);
+    }
+  };
+
+  const removeImage = (index: number) => {
+    URL.revokeObjectURL(imagePreviewUrls[index]);
+    setSelectedImages(selectedImages.filter((_, i) => i !== index));
+    setImagePreviewUrls(imagePreviewUrls.filter((_, i) => i !== index));
+    setUploadError('');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -61,18 +108,41 @@ function ContactSection() {
     try {
       const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
 
+      const imageDataPromises = selectedImages.map(async (file) => {
+        return new Promise<{ filename: string; content: string; type: string }>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const base64 = (reader.result as string).split(',')[1];
+            resolve({
+              filename: file.name,
+              content: base64,
+              type: file.type,
+            });
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      });
+
+      const imageData = await Promise.all(imageDataPromises);
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          images: imageData,
+        }),
       });
 
       if (!response.ok) {
         throw new Error('Email verzenden mislukt');
       }
+
+      imagePreviewUrls.forEach(url => URL.revokeObjectURL(url));
 
       setIsError(false);
       setShowSuccessModal(true);
@@ -84,6 +154,9 @@ function ContactSection() {
         address: '',
         message: '',
       });
+      setSelectedImages([]);
+      setImagePreviewUrls([]);
+      setUploadError('');
     } catch (error) {
       setIsError(true);
       setSubmitMessage('Er is iets misgegaan. Probeer het opnieuw of bel ons direct op +32 467 61 63 49.');
@@ -206,6 +279,72 @@ function ContactSection() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition resize-none"
                   placeholder="Beschrijf uw vochtprobleem..."
                 />
+              </div>
+
+              <div>
+                <label htmlFor="images" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Foto's van het probleem (optioneel)
+                </label>
+                <p className="text-sm text-gray-500 mb-3">
+                  Upload maximaal 3 foto's (JPEG, PNG, GIF, WebP - max 5MB per foto)
+                </p>
+
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#34B8C3] transition">
+                  <input
+                    type="file"
+                    id="images"
+                    accept="image/jpeg,image/png,image/gif,image/webp"
+                    multiple
+                    onChange={handleImageChange}
+                    className="hidden"
+                    disabled={selectedImages.length >= 3}
+                  />
+                  <label
+                    htmlFor="images"
+                    className={`cursor-pointer inline-flex flex-col items-center ${selectedImages.length >= 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    <Upload className="text-gray-400 mb-2" size={40} />
+                    <span className="text-gray-600 font-medium">
+                      {selectedImages.length >= 3 ? 'Maximaal aantal bereikt' : 'Klik om foto\'s te uploaden'}
+                    </span>
+                    <span className="text-gray-500 text-sm mt-1">
+                      of sleep ze hierheen
+                    </span>
+                  </label>
+                </div>
+
+                {uploadError && (
+                  <div className="mt-3 bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-lg text-sm">
+                    {uploadError}
+                  </div>
+                )}
+
+                {imagePreviewUrls.length > 0 && (
+                  <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    {imagePreviewUrls.map((url, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={url}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-lg border-2 border-gray-200"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition hover:bg-red-600"
+                        >
+                          <X size={16} />
+                        </button>
+                        <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded flex items-center">
+                          <ImageIcon size={12} className="mr-1" />
+                          {selectedImages[index].name.length > 15
+                            ? selectedImages[index].name.substring(0, 15) + '...'
+                            : selectedImages[index].name}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <button

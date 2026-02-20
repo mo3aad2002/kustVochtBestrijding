@@ -6,12 +6,19 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
+interface ImageAttachment {
+  filename: string;
+  content: string;
+  type: string;
+}
+
 interface ContactFormData {
   name: string;
   email: string;
   phone: string;
   address: string;
   message: string;
+  images?: ImageAttachment[];
 }
 
 Deno.serve(async (req: Request) => {
@@ -25,7 +32,7 @@ Deno.serve(async (req: Request) => {
   try {
     const formData: ContactFormData = await req.json();
 
-    const { name, email, phone, address, message } = formData;
+    const { name, email, phone, address, message, images = [] } = formData;
 
     if (!name || !email || !phone || !address) {
       return new Response(
@@ -196,6 +203,26 @@ Deno.serve(async (req: Request) => {
               </table>
               ` : ''}
 
+              <!-- Images -->
+              ${images && images.length > 0 ? `
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td style="padding-bottom: 8px;">
+                    <p style="margin: 0; color: #34B8C3; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Bijgevoegde Foto's (${images.length})
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 15px; background-color: #f8f9fa; border-left: 4px solid #34B8C3; border-radius: 4px;">
+                    <p style="margin: 0 0 10px 0; color: #6c757d; font-size: 14px;">
+                      De klant heeft ${images.length} foto${images.length > 1 ? "'s" : ''} bijgevoegd. Deze zijn als bijlage toegevoegd aan deze email.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              ` : ''}
+
               <!-- Action Button -->
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 35px;">
                 <tr>
@@ -258,6 +285,8 @@ ${address}
 
 ${message ? `BERICHT:\n${message}` : ''}
 
+${images && images.length > 0 ? `\nBIJGEVOEGDE FOTO'S:\nDe klant heeft ${images.length} foto${images.length > 1 ? "'s" : ''} bijgevoegd (zie bijlagen).\n` : ''}
+
 ---
 Kust Vochtbestrijding
 Kemmelbergstraat 40, Oostende
@@ -265,20 +294,37 @@ Tel: +32 467 61 63 49
 Email: info@kustvochtbestrijding.be
     `;
 
+    const emailPayload: {
+      from: string;
+      to: string[];
+      reply_to: string;
+      subject: string;
+      html: string;
+      text: string;
+      attachments?: Array<{ filename: string; content: string }>;
+    } = {
+      from: "Kust Vochtbestrijding <noreply@kustvochtbestrijding.be>",
+      to: ["info@kustvochtbestrijding.be"],
+      reply_to: email,
+      subject: `Nieuw Contact Formulier: ${name}`,
+      html: emailHtml,
+      text: emailText,
+    };
+
+    if (images && images.length > 0) {
+      emailPayload.attachments = images.map((img) => ({
+        filename: img.filename,
+        content: img.content,
+      }));
+    }
+
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
-      body: JSON.stringify({
-        from: "Kust Vochtbestrijding <noreply@kustvochtbestrijding.be>",
-        to: ["info@kustvochtbestrijding.be"],
-        reply_to: email,
-        subject: `Nieuw Contact Formulier: ${name}`,
-        html: emailHtml,
-        text: emailText,
-      }),
+      body: JSON.stringify(emailPayload),
     });
 
     if (!resendResponse.ok) {
