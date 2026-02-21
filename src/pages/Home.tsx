@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Award, Users, ClipboardCheck, Clock, ChevronDown, Phone } from 'lucide-react';
+import { Award, Users, ClipboardCheck, Clock, ChevronDown, Phone, Shield, Star, CheckCircle2 } from 'lucide-react';
 import { useCountUp } from '../hooks/useCountUp';
 import { useState } from 'react';
 import moistureInspectionImage from '../assets/Elektricien_(4).png';
@@ -72,31 +72,107 @@ function StatsSection() {
   const { count: clientCount, ref: clientRef } = useCountUp(500, 2500);
 
   return (
-    <section className="py-12 bg-white border-y border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <div className="text-center">
-            <Award className="mx-auto mb-3 text-[#34B8C3]" size={40} />
-            <h3 className="text-3xl font-bold text-gray-800 mb-1">10+</h3>
-            <p className="text-sm text-gray-600">Jaar Ervaring</p>
+    <section className="relative py-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-[#34B8C3] opacity-5 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#34B8C3] opacity-5 rounded-full blur-2xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Trust Badge Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center mb-4">
+            <Shield className="text-[#34B8C3] mr-2" size={28} strokeWidth={2} />
+            <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Vertrouwd door duizenden</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            Uw Partner in Vochtbestrijding
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Met jarenlange ervaring en bewezen resultaten leveren wij kwaliteit waar u op kunt vertrouwen
+          </p>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+          <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#34B8C3] transform hover:-translate-y-1">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] opacity-10 rounded-xl blur-xl group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto shadow-md group-hover:scale-110 transition-transform">
+                <Award className="text-white" size={32} strokeWidth={2} />
+              </div>
+            </div>
+            <h3 className="text-4xl font-bold text-gray-900 mb-2 group-hover:text-[#34B8C3] transition-colors">10+</h3>
+            <p className="text-gray-600 font-medium">Jaar Ervaring</p>
           </div>
 
-          <div ref={clientRef} className="text-center">
-            <Users className="mx-auto mb-3 text-[#34B8C3]" size={40} />
-            <h3 className="text-3xl font-bold text-gray-800 mb-1">{clientCount}+</h3>
-            <p className="text-sm text-gray-600">Tevreden Klanten</p>
+          <div ref={clientRef} className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#34B8C3] transform hover:-translate-y-1">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] opacity-10 rounded-xl blur-xl group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto shadow-md group-hover:scale-110 transition-transform">
+                <Users className="text-white" size={32} strokeWidth={2} />
+              </div>
+            </div>
+            <h3 className="text-4xl font-bold text-gray-900 mb-2 group-hover:text-[#34B8C3] transition-colors">{clientCount}+</h3>
+            <p className="text-gray-600 font-medium">Tevreden Klanten</p>
           </div>
 
-          <div className="text-center">
-            <ClipboardCheck className="mx-auto mb-3 text-[#34B8C3]" size={40} />
-            <h3 className="text-3xl font-bold text-gray-800 mb-1">Gratis</h3>
-            <p className="text-sm text-gray-600">Inspectie</p>
+          <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#34B8C3] transform hover:-translate-y-1">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] opacity-10 rounded-xl blur-xl group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto shadow-md group-hover:scale-110 transition-transform">
+                <ClipboardCheck className="text-white" size={32} strokeWidth={2} />
+              </div>
+            </div>
+            <h3 className="text-4xl font-bold text-gray-900 mb-2 group-hover:text-[#34B8C3] transition-colors">Gratis</h3>
+            <p className="text-gray-600 font-medium">Inspectie</p>
           </div>
 
-          <div className="text-center">
-            <Clock className="mx-auto mb-3 text-[#34B8C3]" size={40} />
-            <h3 className="text-3xl font-bold text-gray-800 mb-1">24/7</h3>
-            <p className="text-sm text-gray-600">Spoedinterventie</p>
+          <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#34B8C3] transform hover:-translate-y-1">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] opacity-10 rounded-xl blur-xl group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto shadow-md group-hover:scale-110 transition-transform">
+                <Clock className="text-white" size={32} strokeWidth={2} />
+              </div>
+            </div>
+            <h3 className="text-4xl font-bold text-gray-900 mb-2 group-hover:text-[#34B8C3] transition-colors">24/7</h3>
+            <p className="text-gray-600 font-medium">Spoedinterventie</p>
+          </div>
+        </div>
+
+        {/* Trust Indicators Row */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-10">
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="flex items-start space-x-4">
+              <div className="flex-shrink-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center shadow-md">
+                <Star className="text-white" size={24} strokeWidth={2} fill="white" />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 mb-1">Topkwaliteit</h4>
+                <p className="text-sm text-gray-600">Hoogwaardige materialen en technieken</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="flex-shrink-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center shadow-md">
+                <Shield className="text-white" size={24} strokeWidth={2} />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 mb-1">Langdurige Garantie</h4>
+                <p className="text-sm text-gray-600">Vol vertrouwen in onze werkzaamheden</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="flex-shrink-0 bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center shadow-md">
+                <CheckCircle2 className="text-white" size={24} strokeWidth={2} />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 mb-1">Gecertificeerd</h4>
+                <p className="text-sm text-gray-600">Professioneel en betrouwbaar</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
