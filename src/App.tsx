@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Diensten from './pages/Diensten';
 import OverOns from './pages/OverOns';
 import Contact from './pages/Contact';
+import Privacybeleid from './pages/Privacybeleid';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/diensten" element={<Diensten />} />
             <Route path="/over-ons" element={<OverOns />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacybeleid" element={<Privacybeleid />} />
           </Routes>
         </main>
         <Footer />

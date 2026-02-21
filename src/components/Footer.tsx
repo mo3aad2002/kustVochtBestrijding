@@ -70,8 +70,18 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; 2024 Kust Vochtbestrijding. Alle rechten voorbehouden.</p>
+        <div className="border-t border-gray-700 mt-8 pt-8">
+          <div className="text-center text-gray-400 text-sm">
+            <p>&copy; 2024 Kust Vochtbestrijding. Alle rechten voorbehouden.</p>
+          </div>
+          <div className="text-center mt-3">
+            <Link
+              to="/privacybeleid"
+              className="text-gray-500 hover:text-[#34B8C3] transition text-xs"
+            >
+              Privacybeleid
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
