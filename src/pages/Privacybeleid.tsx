@@ -178,68 +178,12 @@ export default function Privacybeleid() {
             <div className="mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center">
                 <FileText className="mr-3 text-[#34B8C3]" size={32} />
-                8. Cookies
-              </h2>
-              <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-[#34B8C3]">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Deze website gebruikt alleen functionele cookies die noodzakelijk zijn voor de werking van de website. Deze cookies hebben geen impact op uw privacy en vereisen geen toestemming.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Wij gebruiken geen tracking cookies of cookies voor marketingdoeleinden. Mocht dit in de toekomst veranderen, dan zullen wij vooraf uw expliciete toestemming vragen.
-                </p>
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center">
-                <Mail className="mr-3 text-[#34B8C3]" size={32} />
-                9. Klachten
-              </h2>
-              <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-[#34B8C3]">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Mocht u een klacht hebben over de verwerking van uw persoonsgegevens dan vragen wij u hierover direct contact met ons op te nemen. Komen wij er samen met u niet uit, dan vinden wij dit natuurlijk erg vervelend. U heeft altijd het recht een klacht in te dienen bij de Gegevensbeschermingsautoriteit (GBA), dit is de toezichthoudende autoriteit op het gebied van privacybescherming.
-                </p>
-                <div className="bg-white p-4 rounded-lg mt-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">Contact Gegevensbeschermingsautoriteit:</h3>
-                  <p className="text-gray-700">
-                    <strong>Website:</strong> <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener noreferrer" className="text-[#34B8C3] hover:underline">www.gegevensbeschermingsautoriteit.be</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center">
-                <FileText className="mr-3 text-[#34B8C3]" size={32} />
-                10. Wijzigingen in dit Privacybeleid
+                8. Wijzigingen in dit Privacybeleid
               </h2>
               <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-[#34B8C3]">
                 <p className="text-gray-700 leading-relaxed">
                   Kust Vochtbestrijding kan dit privacybeleid van tijd tot tijd aanpassen. Wij raden u daarom aan om dit privacybeleid geregeld te raadplegen, zodat u op de hoogte blijft van deze wijzigingen. Dit privacybeleid is voor het laatst aangepast op de datum bovenaan deze pagina.
                 </p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-[#34B8C3] to-[#2a9aa3] text-white p-8 rounded-xl">
-              <h2 className="text-2xl font-bold mb-4">Vragen over Privacy?</h2>
-              <p className="mb-6 text-white/90">
-                Heeft u vragen over dit privacybeleid of over hoe wij met uw persoonsgegevens omgaan? Neem gerust contact met ons op.
-              </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                <a
-                  href="tel:+32467616349"
-                  className="flex items-center justify-center bg-white text-[#34B8C3] px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
-                >
-                  <Phone className="mr-2" size={20} />
-                  +32 467 61 63 49
-                </a>
-                <a
-                  href="mailto:info@kustvochtbestrijding.be"
-                  className="flex items-center justify-center bg-white text-[#34B8C3] px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
-                >
-                  <Mail className="mr-2" size={20} />
-                  E-mail Ons
-                </a>
               </div>
             </div>
 
