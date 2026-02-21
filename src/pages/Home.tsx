@@ -94,45 +94,37 @@ function StatsSection() {
           </p>
         </div>
 
-        {/* Stats Grid - Reduced Size */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12">
-          <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[#34B8C3]">
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center mb-3 mx-auto shadow-sm group-hover:scale-105 transition-transform">
-                <Award className="text-white" size={24} strokeWidth={2} />
-              </div>
+        {/* Stats Grid - Clean Horizontal Layout */}
+        <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 mb-12">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Award className="text-[#34B8C3]" size={28} strokeWidth={2} />
+              <h3 className="text-3xl font-bold text-gray-900">10+</h3>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-[#34B8C3] transition-colors">10+</h3>
             <p className="text-gray-600 text-sm font-medium">Jaar Ervaring</p>
           </div>
 
-          <div ref={clientRef} className="group bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[#34B8C3]">
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center mb-3 mx-auto shadow-sm group-hover:scale-105 transition-transform">
-                <Users className="text-white" size={24} strokeWidth={2} />
-              </div>
+          <div ref={clientRef} className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Users className="text-[#34B8C3]" size={28} strokeWidth={2} />
+              <h3 className="text-3xl font-bold text-gray-900">{clientCount}+</h3>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-[#34B8C3] transition-colors">{clientCount}+</h3>
             <p className="text-gray-600 text-sm font-medium">Tevreden Klanten</p>
           </div>
 
-          <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[#34B8C3]">
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center mb-3 mx-auto shadow-sm group-hover:scale-105 transition-transform">
-                <ClipboardCheck className="text-white" size={24} strokeWidth={2} />
-              </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <ClipboardCheck className="text-[#34B8C3]" size={28} strokeWidth={2} />
+              <h3 className="text-3xl font-bold text-gray-900">Gratis</h3>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-[#34B8C3] transition-colors">Gratis</h3>
             <p className="text-gray-600 text-sm font-medium">Inspectie</p>
           </div>
 
-          <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[#34B8C3]">
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-[#34B8C3] to-[#2a9aa3] w-12 h-12 rounded-lg flex items-center justify-center mb-3 mx-auto shadow-sm group-hover:scale-105 transition-transform">
-                <Clock className="text-white" size={24} strokeWidth={2} />
-              </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Clock className="text-[#34B8C3]" size={28} strokeWidth={2} />
+              <h3 className="text-3xl font-bold text-gray-900">24/7</h3>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-[#34B8C3] transition-colors">24/7</h3>
             <p className="text-gray-600 text-sm font-medium">Spoedinterventie</p>
           </div>
         </div>
