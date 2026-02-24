@@ -4,7 +4,7 @@ import { useCountUp } from '../hooks/useCountUp';
 import { useState } from 'react';
 import moistureInspectionImage from '../assets/Elektricien_(4).png';
 import heroImage from '../assets/hero_image_kust_vocht.png';
-import faqImage from '../assets/3646fab1-235e-450b-8198-51dccfc52325.png';
+import faqImage from '../assets/vochttt.png';
 
 export default function Home() {
   return (
