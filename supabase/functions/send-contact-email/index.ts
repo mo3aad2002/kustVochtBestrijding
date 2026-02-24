@@ -17,6 +17,7 @@ interface ContactFormData {
   email: string;
   phone: string;
   address: string;
+  service: string;
   message: string;
   images?: ImageAttachment[];
 }
@@ -32,9 +33,9 @@ Deno.serve(async (req: Request) => {
   try {
     const formData: ContactFormData = await req.json();
 
-    const { name, email, phone, address, message, images = [] } = formData;
+    const { name, email, phone, address, service, message, images = [] } = formData;
 
-    if (!name || !email || !phone || !address) {
+    if (!name || !email || !phone || !address || !service) {
       return new Response(
         JSON.stringify({ error: "Alle verplichte velden moeten ingevuld zijn" }),
         {
@@ -183,6 +184,24 @@ Deno.serve(async (req: Request) => {
                 </tr>
               </table>
 
+              <!-- Service -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td style="padding-bottom: 8px;">
+                    <p style="margin: 0; color: #34B8C3; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Service van Interesse
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 15px; background-color: #fff4e6; border-left: 4px solid #ff9800; border-radius: 4px;">
+                    <p style="margin: 0; color: #212529; font-size: 16px; font-weight: 600;">
+                      ${service}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
               <!-- Message -->
               ${message ? `
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
@@ -282,6 +301,9 @@ ${phone}
 
 ADRES:
 ${address}
+
+SERVICE VAN INTERESSE:
+${service}
 
 ${message ? `BERICHT:\n${message}` : ''}
 

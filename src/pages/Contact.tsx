@@ -36,6 +36,7 @@ function ContactSection() {
     email: '',
     phone: '',
     address: '',
+    service: '',
     message: '',
   });
 
@@ -48,7 +49,7 @@ function ContactSection() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -152,6 +153,7 @@ function ContactSection() {
         email: '',
         phone: '',
         address: '',
+        service: '',
         message: '',
       });
       setSelectedImages([]);
@@ -264,6 +266,25 @@ function ContactSection() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition"
                   placeholder="Straat, nummer, postcode, stad"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="service" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Service van Interesse *
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition bg-white"
+                >
+                  <option value="">Selecteer een service</option>
+                  <option value="Vocht op Muren">Vocht op Muren</option>
+                  <option value="Schimmel">Schimmel</option>
+                  <option value="Condensatie">Condensatie</option>
+                </select>
               </div>
 
               <div>
