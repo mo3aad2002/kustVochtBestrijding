@@ -1,5 +1,8 @@
 import { Droplets, Bug, Home, Wind, Shield, Search, ArrowRight, ClipboardCheck, MessageSquare, Award } from 'lucide-react';
 import heroImage from '../assets/a46db951-dba9-450d-acf7-d53ceb163c37.png';
+import vochtOpMuurImg from '../assets/vocht_op_muur.png';
+import schimmelOpMuurImg from '../assets/schimmel_op_muur.png';
+import condensatieImg from '../assets/condensatie.jpg';
 
 export default function Diensten() {
   return (
@@ -35,19 +38,19 @@ function HeroSection() {
 function ServicesGrid() {
   const services = [
     {
-      icon: <Droplets size={56} />,
+      image: vochtOpMuurImg,
       title: 'Vocht op Muren',
       description: 'Heeft u natte muren of vochtplekken aan de onderkant van uw muur? Dit komt doordat vocht uit de grond omhoog kruipt in uw muren. Wij stoppen dit opstijgend vocht definitief zodat uw muren weer helemaal droog worden en blijven',
       gradient: 'from-[#34B8C3] to-[#2a9aa3]',
     },
     {
-      icon: <Bug size={56} />,
+      image: schimmelOpMuurImg,
       title: 'Schimmel',
       description: 'Schimmel in huis is ongezond en kan voor vieze vlekken zorgen. Wij zoeken uit waar de schimmel vandaan komt, verwijderen het volledig en zorgen ervoor dat het niet meer terugkomt.',
       gradient: 'from-[#233D60] to-[#1a2d4a]',
     },
     {
-      icon: <Wind size={56} />,
+      image: condensatieImg,
       title: 'Condensatie',
       description: 'Beslagen ramen, natte muren of vocht in de lucht? Dit komt door condensatie. Wij zorgen voor betere ventilatie en lossen uw condensatieproblemen op, zodat uw huis gezond en droog blijft.',
       gradient: 'from-[#34B8C3] to-[#2a9aa3]',
@@ -114,26 +117,31 @@ function ServicesGrid() {
                 {/* Decorative corner element */}
                 <div className={`absolute -top-3 -right-3 w-24 h-24 bg-gradient-to-br ${service.gradient} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-500 blur-2xl`}></div>
 
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-2 border-transparent hover:border-gray-100 h-full flex flex-col">
-                  {/* Icon with gradient background */}
-                  <div className="mb-6">
-                    <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${service.gradient} text-white shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                      {service.icon}
-                    </div>
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-2 border-transparent hover:border-gray-100 h-full flex flex-col">
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}></div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#34B8C3] transition-colors">
-                    {service.title}
-                  </h3>
+                  <div className="p-8 flex flex-col flex-1">
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#34B8C3] transition-colors">
+                      {service.title}
+                    </h3>
 
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed flex-1">
-                    {service.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed flex-1">
+                      {service.description}
+                    </p>
+                  </div>
 
                   {/* Decorative gradient bar at bottom */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient} rounded-b-2xl transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
                 </div>
               </div>
             </div>
