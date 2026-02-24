@@ -277,46 +277,82 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
-          Veelgestelde Vragen
-        </h2>
+    <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute top-20 right-20 w-72 h-72 bg-[#34B8C3] opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 left-10 w-96 h-96 bg-[#233D60] opacity-10 rounded-full blur-3xl"></div>
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* FAQ Cards */}
-          <div className="space-y-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+            Veelgestelde Vragen
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Antwoorden op de meest gestelde vragen over vochtbestrijding
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-16 items-start">
+          {/* FAQ Cards - 58% width */}
+          <div className="space-y-3">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-2 border-[#34B8C3] rounded-lg overflow-hidden">
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[#34B8C3] transition-all duration-300 shadow-sm hover:shadow-md"
+              >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition flex items-center justify-between"
+                  className="w-full px-6 py-5 text-left hover:bg-gray-50 transition-colors flex items-center justify-between group"
                 >
-                  <span className="font-semibold text-gray-800">{faq.question}</span>
+                  <span className="font-semibold text-gray-800 pr-4 group-hover:text-[#34B8C3] transition-colors">
+                    {faq.question}
+                  </span>
                   <ChevronDown
                     className={`text-[#34B8C3] transition-transform flex-shrink-0 ${
                       openIndex === index ? 'transform rotate-180' : ''
                     }`}
-                    size={24}
+                    size={22}
+                    strokeWidth={2.5}
                   />
                 </button>
 
                 {openIndex === index && (
-                  <div className="px-6 py-4 bg-gray-50 border-t-2 border-[#34B8C3]">
-                    <p className="text-gray-700">{faq.answer}</p>
+                  <div className="px-6 py-5 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
+                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                   </div>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Image */}
+          {/* Image Container - 42% width */}
           <div className="lg:sticky lg:top-8">
-            <img
-              src={faqImage}
-              alt="Professional behandeling van vochtproblemen"
-              className="rounded-lg shadow-xl w-full h-auto object-cover"
-            />
+            <div className="relative">
+              {/* Decorative gradient border */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-[#34B8C3] via-[#2a9aa3] to-[#233D60] rounded-2xl opacity-20 blur-sm"></div>
+
+              {/* Image wrapper with background */}
+              <div className="relative bg-white rounded-2xl p-3 shadow-xl">
+                <div className="relative rounded-xl overflow-hidden">
+                  <img
+                    src={faqImage}
+                    alt="Professional behandeling van vochtproblemen"
+                    className="w-full h-auto object-cover"
+                    style={{ maxHeight: '600px' }}
+                  />
+                  {/* Subtle overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#233D60]/10 to-transparent pointer-events-none"></div>
+                </div>
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-[#34B8C3] to-[#233D60] text-white px-6 py-3 rounded-xl shadow-lg">
+                <p className="font-bold text-sm">Expert Advies</p>
+                <p className="text-xs opacity-90">Altijd Beschikbaar</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
