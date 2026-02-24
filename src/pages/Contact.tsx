@@ -270,7 +270,7 @@ function ContactSection() {
 
               <div>
                 <label htmlFor="service" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Service van Interesse *
+                  Dienst *
                 </label>
                 <select
                   id="service"
