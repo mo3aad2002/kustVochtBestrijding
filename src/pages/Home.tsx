@@ -4,6 +4,7 @@ import { useCountUp } from '../hooks/useCountUp';
 import { useState } from 'react';
 import moistureInspectionImage from '../assets/Elektricien_(4).png';
 import heroImage from '../assets/hero_image_kust_vocht.png';
+import faqImage from '../assets/3646fab1-235e-450b-8198-51dccfc52325.png';
 
 export default function Home() {
   return (
@@ -277,34 +278,46 @@ function FAQSection() {
 
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
           Veelgestelde Vragen
         </h2>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div key={index} className="border-2 border-[#34B8C3] rounded-lg overflow-hidden">
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition flex items-center justify-between"
-              >
-                <span className="font-semibold text-gray-800">{faq.question}</span>
-                <ChevronDown
-                  className={`text-[#34B8C3] transition-transform ${
-                    openIndex === index ? 'transform rotate-180' : ''
-                  }`}
-                  size={24}
-                />
-              </button>
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          {/* FAQ Cards */}
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="border-2 border-[#34B8C3] rounded-lg overflow-hidden">
+                <button
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition flex items-center justify-between"
+                >
+                  <span className="font-semibold text-gray-800">{faq.question}</span>
+                  <ChevronDown
+                    className={`text-[#34B8C3] transition-transform flex-shrink-0 ${
+                      openIndex === index ? 'transform rotate-180' : ''
+                    }`}
+                    size={24}
+                  />
+                </button>
 
-              {openIndex === index && (
-                <div className="px-6 py-4 bg-gray-50 border-t-2 border-[#34B8C3]">
-                  <p className="text-gray-700">{faq.answer}</p>
-                </div>
-              )}
-            </div>
-          ))}
+                {openIndex === index && (
+                  <div className="px-6 py-4 bg-gray-50 border-t-2 border-[#34B8C3]">
+                    <p className="text-gray-700">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Image */}
+          <div className="lg:sticky lg:top-8">
+            <img
+              src={faqImage}
+              alt="Professional behandeling van vochtproblemen"
+              className="rounded-lg shadow-xl w-full h-auto object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>
