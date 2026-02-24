@@ -278,8 +278,9 @@ function ContactSection() {
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition bg-white"
+                  className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition bg-white ${!formData.service ? 'text-gray-400' : 'text-gray-900'}`}
                 >
+                  <option value="" disabled hidden>Selecteer een service</option>
                   <option value="Vocht op Muren">Vocht op Muren</option>
                   <option value="Schimmel">Schimmel</option>
                   <option value="Condensatie">Condensatie</option>
