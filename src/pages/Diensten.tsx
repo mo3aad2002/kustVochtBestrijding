@@ -1,4 +1,5 @@
-import { Droplets, Bug, Home, Wind, Shield, Search, ArrowRight, ClipboardCheck, MessageSquare, Award } from 'lucide-react';
+import { Droplets, Bug, Home, Wind, Shield, Search, ArrowRight, ClipboardCheck, MessageSquare, Award, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import heroImage from '../assets/a46db951-dba9-450d-acf7-d53ceb163c37.png';
 import vochtOpMuurImg from '../assets/vocht_op_muur.png';
 import schimmelOpMuurImg from '../assets/schimmel_op_muur.png';
@@ -146,6 +147,38 @@ function ServicesGrid() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Subtle CTA Section */}
+        <div className="mt-16">
+          <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-8 md:p-10 border-2 border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex-1 text-center md:text-left">
+                <p className="text-gray-800 text-lg md:text-xl font-medium mb-2">
+                  Niet zeker welke oplossing u nodig heeft?
+                </p>
+                <p className="text-gray-600">
+                  Laat onze experts u adviseren met een gratis en vrijblijvende inspectie
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="tel:+32497062583"
+                  className="inline-flex items-center justify-center gap-2 bg-[#34B8C3] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2a9aa3] transition-colors shadow-md hover:shadow-lg"
+                >
+                  <Phone size={20} />
+                  <span>+32 497 06 25 83</span>
+                </a>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#34B8C3] border-2 border-[#34B8C3] px-6 py-3 rounded-lg font-semibold hover:bg-[#34B8C3] hover:text-white transition-all"
+                >
+                  <span>Contacteer Ons</span>
+                  <ArrowRight size={20} />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
