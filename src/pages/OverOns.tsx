@@ -136,15 +136,6 @@ function ValuesSection() {
     },
   ];
 
-  const coreCommitments = [
-    'Grondige analyse met professionele meetapparatuur',
-    'Transparante communicatie en eerlijke prijzen',
-    'Gebruik van hoogwaardige, bewezen materialen',
-    'Langdurige garantie op al onze werkzaamheden',
-    'Persoonlijke begeleiding van begin tot eind',
-    'Nazorg en follow-up na elke behandeling',
-  ];
-
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -156,62 +147,41 @@ function ValuesSection() {
           Deze waarden zijn de basis van alles wat we doen.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {values.map((value, index) => (
-            <div key={index} className="bg-white rounded-lg p-8 shadow-md text-center border-2 border-[#34B8C3] hover:shadow-lg transition-shadow">
-              <div className="text-[#34B8C3] mb-4 flex justify-center">
-                {value.icon}
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="space-y-6">
+            {values.map((value, index) => (
+              <div key={index} className="bg-white rounded-lg p-6 shadow-md border-l-4 border-[#34B8C3] hover:shadow-lg transition-all hover:translate-x-1">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 text-[#34B8C3] bg-[#34B8C3]/10 p-4 rounded-lg">
+                    {value.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                      {value.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                {value.title}
-              </h3>
-              <p className="text-gray-600">{value.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="order-2 lg:order-1">
-            <img
-              src={valuesImage}
-              alt="Professionele vochtbestrijding specialist aan het werk met moderne apparatuur"
-              className="w-full h-full object-cover"
-            />
+            ))}
           </div>
 
-          <div className="order-1 lg:order-2 p-8 md:p-12">
-            <div className="inline-block bg-[#34B8C3]/10 rounded-full px-4 py-2 mb-4">
-              <span className="text-[#34B8C3] font-semibold text-sm uppercase tracking-wider">
-                Ons Engagement
-              </span>
-            </div>
-
-            <h3 className="text-3xl font-bold text-gray-800 mb-6">
-              Vakmanschap met Zorg en Precisie
-            </h3>
-
-            <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-              Elke opdracht behandelen we met dezelfde toewijding en professionaliteit.
-              Of het nu gaat om een kleine lekkage of grootschalige vochtschade,
-              onze specialisten werken met de hoogste standaarden en modernste technieken.
-            </p>
-
-            <div className="space-y-3 mb-8">
-              {coreCommitments.map((commitment, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <CheckCircle className="text-[#34B8C3]" size={20} strokeWidth={2.5} />
-                  </div>
-                  <p className="ml-3 text-gray-700">{commitment}</p>
+          <div className="relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={valuesImage}
+                alt="Professionele vochtbestrijding specialist aan het werk met moderne apparatuur"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                  <p className="text-lg font-semibold mb-2">Vakmanschap in Actie</p>
+                  <p className="text-sm opacity-90">
+                    Onze gecertificeerde specialisten aan het werk met professionele apparatuur en beschermingsmiddelen. Uw veiligheid en de kwaliteit van het werk staan altijd voorop.
+                  </p>
                 </div>
-              ))}
-            </div>
-
-            <div className="bg-gradient-to-r from-[#34B8C3]/10 to-[#233D60]/10 rounded-lg p-6 border-l-4 border-[#34B8C3]">
-              <p className="text-gray-800 font-medium italic">
-                "Uw woning verdient de beste bescherming tegen vocht.
-                Dat is niet alleen ons werk, het is onze missie."
-              </p>
+              </div>
             </div>
           </div>
         </div>
