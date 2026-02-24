@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Star } from 'lucide-react';
 import logo from '../assets/vochtbestrijding_logo.png';
 
 export default function Navbar() {
@@ -13,6 +13,26 @@ export default function Navbar() {
 
   return (
     <nav className="bg-[#233D60] text-white sticky top-0 z-50 shadow-lg">
+      {/* Review Bar */}
+      <div className="bg-[#1a2d4a] border-b border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center py-2">
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    className="text-yellow-400 fill-yellow-400"
+                  />
+                ))}
+              </div>
+              <span className="text-sm font-semibold">4.9/5.0</span>
+              <span className="text-sm text-gray-400">(371+)</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center">
