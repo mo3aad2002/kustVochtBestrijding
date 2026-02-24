@@ -1,15 +1,35 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Star } from 'lucide-react';
+import { Menu, X, Phone, Star, ChevronDown, Droplets, Bug, Wind, Search } from 'lucide-react';
 import logo from '../assets/vochtbestrijding_logo.png';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   const isActive = (path: string) => {
     return location.pathname === path;
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const services = [
+    { name: 'Gratis Vocht Inspectie', icon: Search, path: '/diensten#inspectie' },
+    { name: 'Vocht op Muren', icon: Droplets, path: '/diensten#vocht' },
+    { name: 'Schimmel', icon: Bug, path: '/diensten#schimmel' },
+    { name: 'Condensatie', icon: Wind, path: '/diensten#condensatie' },
+  ];
 
   return (
     <nav className="bg-[#233D60] text-white sticky top-0 z-50 shadow-lg">
@@ -30,12 +50,36 @@ export default function Navbar() {
             >
               Home
             </Link>
-            <Link
-              to="/diensten"
-              className={`hover:text-[#34B8C3] transition ${isActive('/diensten') ? 'text-[#34B8C3] font-semibold' : ''}`}
-            >
-              Diensten
-            </Link>
+
+            <div className="relative" ref={servicesRef}>
+              <button
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className={`flex items-center space-x-1 hover:text-[#34B8C3] transition ${isActive('/diensten') ? 'text-[#34B8C3] font-semibold' : ''}`}
+              >
+                <span>Diensten</span>
+                <ChevronDown size={16} className={`transform transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isServicesOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl overflow-hidden z-50">
+                  {services.map((service, index) => {
+                    const Icon = service.icon;
+                    return (
+                      <Link
+                        key={index}
+                        to={service.path}
+                        onClick={() => setIsServicesOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-[#34B8C3] hover:text-white transition-colors group"
+                      >
+                        <Icon size={20} className="flex-shrink-0" />
+                        <span className="text-sm font-medium">{service.name}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
             <Link
               to="/over-ons"
               className={`hover:text-[#34B8C3] transition ${isActive('/over-ons') ? 'text-[#34B8C3] font-semibold' : ''}`}
