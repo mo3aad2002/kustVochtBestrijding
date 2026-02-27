@@ -5,12 +5,16 @@ import { useState } from 'react';
 import moistureInspectionImage from '../assets/Elektricien_(4).png';
 import heroImage from '../assets/hero_image_kust_vocht.png';
 import faqImage from '../assets/vochttt.png';
+import beforeImage from '../assets/27f4a447-f38d-4a23-8259-a8befe0a7998.png';
+import afterImage from '../assets/e7cfb208-e60c-49fb-9013-ced35f7cab0a.png';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
 
 export default function Home() {
   return (
     <div>
       <HeroSection />
       <StatsSection />
+      <BeforeAfterSection />
       <ExplanationSection />
       <CTASection1 />
       <FAQSection />
@@ -352,6 +356,75 @@ function FAQSection() {
                 <p className="font-bold text-sm">Expert Advies</p>
                 <p className="text-xs opacity-90">Altijd Beschikbaar</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BeforeAfterSection() {
+  return (
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center mb-3">
+            <CheckCircle2 className="text-[#34B8C3] mr-2" size={20} strokeWidth={2} />
+            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Bewezen Resultaten</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Voor en Na Behandeling
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Ontdek het verschil dat professionele vochtbestrijding maakt. Sleep de slider om het resultaat te zien.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <BeforeAfterSlider
+              beforeImage={beforeImage}
+              afterImage={afterImage}
+              beforeAlt="Ernstige schimmelvorming op muur voor behandeling"
+              afterAlt="Volledig schone muur na professionele vochtbestrijding"
+            />
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-red-500">
+              <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold mr-3">VOOR</span>
+                Het Probleem
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                Ernstige schimmelvorming door vochtproblemen. Deze situatie is ongezond en kan leiden tot
+                structurele schade aan de woning. Schimmel verspreidt zich snel en moet professioneel worden aangepakt.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-green-500">
+              <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold mr-3">NA</span>
+                De Oplossing
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                Na onze professionele behandeling is de muur volledig schoon en vochtvrij. We pakken de
+                oorzaak aan en zorgen voor een duurzame oplossing met langdurige garantie.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-[#34B8C3] to-[#233D60] rounded-xl p-6 text-white">
+              <h3 className="text-lg font-bold mb-2">Ook last van vochtproblemen?</h3>
+              <p className="text-white/90 mb-4 text-sm">
+                Laat uw woning niet langer lijden onder vocht en schimmel. Onze experts staan klaar om u te helpen.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-block bg-white text-[#34B8C3] px-6 py-3 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 font-semibold"
+              >
+                Vraag Gratis Inspectie Aan
+              </Link>
             </div>
           </div>
         </div>
