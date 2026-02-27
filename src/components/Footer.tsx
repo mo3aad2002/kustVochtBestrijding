@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import logo from '../assets/vochtbestrijding_logo.png';
+import { cities } from '../data/cities';
 
 export default function Footer() {
   return (
     <footer className="bg-[#233D60] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <img
               src={logo}
@@ -23,25 +24,41 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-4">Snelle Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-[#34B8C3] transition">
+                <Link to="/" className="text-gray-300 hover:text-[#34B8C3] transition text-sm">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/diensten" className="text-gray-300 hover:text-[#34B8C3] transition">
+                <Link to="/diensten" className="text-gray-300 hover:text-[#34B8C3] transition text-sm">
                   Diensten
                 </Link>
               </li>
               <li>
-                <Link to="/over-ons" className="text-gray-300 hover:text-[#34B8C3] transition">
+                <Link to="/over-ons" className="text-gray-300 hover:text-[#34B8C3] transition text-sm">
                   Over Ons
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-[#34B8C3] transition">
+                <Link to="/contact" className="text-gray-300 hover:text-[#34B8C3] transition text-sm">
                   Contact
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-lg mb-4">Werkgebied</h4>
+            <ul className="space-y-2 max-h-48 overflow-y-auto pr-2">
+              {cities.map((city, index) => (
+                <li key={index}>
+                  <Link
+                    to={`/werkgebied/${city.slug}`}
+                    className="text-gray-300 hover:text-[#34B8C3] transition text-sm"
+                  >
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -1,13 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Star, ChevronDown, Droplets, Bug, Wind, Search } from 'lucide-react';
+import { Menu, X, Phone, Star, ChevronDown, Droplets, Bug, Wind, Search, MapPin } from 'lucide-react';
 import logo from '../assets/vochtbestrijding_logo.png';
+import { cities } from '../data/cities';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isWerkgebiedOpen, setIsWerkgebiedOpen] = useState(false);
   const location = useLocation();
   const servicesRef = useRef<HTMLDivElement>(null);
+  const werkgebiedRef = useRef<HTMLDivElement>(null);
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -17,6 +20,9 @@ export default function Navbar() {
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
         setIsServicesOpen(false);
+      }
+      if (werkgebiedRef.current && !werkgebiedRef.current.contains(event.target as Node)) {
+        setIsWerkgebiedOpen(false);
       }
     };
 
@@ -76,6 +82,34 @@ export default function Navbar() {
                       </Link>
                     );
                   })}
+                </div>
+              )}
+            </div>
+
+            <div className="relative" ref={werkgebiedRef}>
+              <button
+                onClick={() => setIsWerkgebiedOpen(!isWerkgebiedOpen)}
+                className="flex items-center space-x-1 hover:text-[#34B8C3] transition"
+              >
+                <span>Werkgebied</span>
+                <ChevronDown size={16} className={`transform transition-transform ${isWerkgebiedOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isWerkgebiedOpen && (
+                <div className="absolute top-full left-0 mt-2 w-[500px] bg-white rounded-lg shadow-xl overflow-hidden z-50">
+                  <div className="grid grid-cols-2 gap-0">
+                    {cities.map((city, index) => (
+                      <Link
+                        key={index}
+                        to={`/werkgebied/${city.slug}`}
+                        onClick={() => setIsWerkgebiedOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-[#34B8C3] hover:text-white transition-colors group border-b border-gray-100"
+                      >
+                        <MapPin size={18} className="flex-shrink-0" />
+                        <span className="text-sm font-medium">{city.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -142,6 +176,32 @@ export default function Navbar() {
             >
               Diensten
             </Link>
+            <div>
+              <button
+                onClick={() => setIsWerkgebiedOpen(!isWerkgebiedOpen)}
+                className="flex items-center justify-between w-full hover:text-[#34B8C3] transition"
+              >
+                <span>Werkgebied</span>
+                <ChevronDown size={16} className={`transform transition-transform ${isWerkgebiedOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isWerkgebiedOpen && (
+                <div className="mt-2 ml-4 space-y-2 max-h-64 overflow-y-auto">
+                  {cities.map((city, index) => (
+                    <Link
+                      key={index}
+                      to={`/werkgebied/${city.slug}`}
+                      onClick={() => {
+                        setIsWerkgebiedOpen(false);
+                        setIsOpen(false);
+                      }}
+                      className="block text-sm text-gray-300 hover:text-[#34B8C3] transition py-1"
+                    >
+                      {city.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               to="/over-ons"
               className={`block hover:text-[#34B8C3] transition ${isActive('/over-ons') ? 'text-[#34B8C3] font-semibold' : ''}`}
