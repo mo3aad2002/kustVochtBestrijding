@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, CheckCircle, X, Upload, Image as ImageIcon } from 'lucide-react';
 import heroImage from '../assets/04611d2b-e43e-42dd-b4bf-97a949fb357c.png';
+import { cities } from '../data/cities';
 
 export default function Contact() {
   return (
@@ -36,6 +37,7 @@ function ContactSection() {
     email: '',
     phone: '',
     address: '',
+    city: '',
     service: '',
     message: '',
   });
@@ -153,6 +155,7 @@ function ContactSection() {
         email: '',
         phone: '',
         address: '',
+        city: '',
         service: '',
         message: '',
       });
@@ -264,8 +267,29 @@ function ContactSection() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition"
-                  placeholder="Straat, nummer, postcode, stad"
+                  placeholder="Straat, nummer"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="city" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Stad *
+                </label>
+                <select
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                  className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#34B8C3] focus:border-transparent outline-none transition bg-white ${!formData.city ? 'text-gray-400' : 'text-gray-900'}`}
+                >
+                  <option value="" disabled hidden>Selecteer uw stad</option>
+                  {cities.map((city) => (
+                    <option key={city.slug} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>
