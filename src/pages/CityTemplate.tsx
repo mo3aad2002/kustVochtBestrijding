@@ -3,7 +3,7 @@ import { Award, Users, Shield, CheckCircle2, Phone, Clock, Droplets } from 'luci
 import vochtOpMuurImg from '../assets/vocht_op_muur.png';
 import schimmelOpMuurImg from '../assets/schimmel_op_muur.png';
 import condensatieImg from '../assets/condensatie.jpg';
-import aboutImage from '../assets/Elektricien_(4).png';
+import aboutImage from '../assets/0065fc17-c4e5-41dc-a19a-1ea18cb075a6.png';
 import heroImageKust from '../assets/hero_image_kust_vocht.png';
 
 interface CityPageProps {
@@ -73,9 +73,10 @@ function HeroSection({ cityName, heroImage }: { cityName: string; heroImage?: st
             </Link>
             <a
               href="tel:+32467616349"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-[#233D60] transition-all font-semibold text-lg"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-[#233D60] transition-all font-semibold text-lg flex items-center justify-center space-x-2"
             >
-              0467 61 63 49
+              <Phone size={22} />
+              <span>Bel ons</span>
             </a>
           </div>
         </div>
@@ -305,7 +306,7 @@ function CTASection({ cityName }: { cityName: string }) {
             className="border-2 border-white text-white px-10 py-4 rounded-xl hover:bg-white hover:text-[#34B8C3] transition-all transform hover:scale-105 font-bold text-lg flex items-center justify-center space-x-2"
           >
             <Phone size={22} />
-            <span>0467 61 63 49</span>
+            <span>Bel ons</span>
           </a>
         </div>
       </div>
