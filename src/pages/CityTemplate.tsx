@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom';
-import { Award, Users, Shield, CheckCircle2, Phone, Clock, Droplets, Home, Briefcase } from 'lucide-react';
+import { Award, Users, Shield, CheckCircle2, Phone, Clock, Droplets } from 'lucide-react';
+import vochtOpMuurImg from '../assets/vocht_op_muur.png';
+import schimmelOpMuurImg from '../assets/schimmel_op_muur.png';
+import condensatieImg from '../assets/condensatie.jpg';
+import aboutImage from '../assets/Elektricien_(4).png';
+import heroImageKust from '../assets/hero_image_kust_vocht.png';
 
 interface CityPageProps {
   cityName: string;
   mapEmbedUrl: string;
+  heroImage?: string;
 }
 
-export default function CityTemplate({ cityName, mapEmbedUrl }: CityPageProps) {
+export default function CityTemplate({ cityName, mapEmbedUrl, heroImage }: CityPageProps) {
   return (
     <div>
-      <HeroSection cityName={cityName} />
+      <HeroSection cityName={cityName} heroImage={heroImage} />
       <TrustSection />
       <ServicesSection cityName={cityName} />
       <AboutSection cityName={cityName} />
@@ -19,14 +25,29 @@ export default function CityTemplate({ cityName, mapEmbedUrl }: CityPageProps) {
   );
 }
 
-function HeroSection({ cityName }: { cityName: string }) {
+function HeroSection({ cityName, heroImage }: { cityName: string; heroImage?: string }) {
   return (
-    <section className="relative bg-gradient-to-br from-[#233D60] via-[#2a4d6e] to-[#34B8C3] py-24 md:py-32">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px)',
-        }}></div>
-      </div>
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      {heroImage ? (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${heroImage})`,
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#233D60]/90 via-[#2a4d6e]/85 to-[#34B8C3]/90" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#233D60] via-[#2a4d6e] to-[#34B8C3]" />
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px)',
+            }}></div>
+          </div>
+        </>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center text-white">
@@ -48,7 +69,6 @@ function HeroSection({ cityName }: { cityName: string }) {
               to="/contact"
               className="bg-white text-[#233D60] px-8 py-4 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 font-semibold text-lg inline-flex items-center justify-center"
             >
-              <Phone className="mr-2" size={20} />
               Gratis Inspectie Aanvragen
             </Link>
             <a
@@ -118,19 +138,19 @@ function TrustSection() {
 function ServicesSection({ cityName }: { cityName: string }) {
   const services = [
     {
-      icon: Droplets,
+      image: vochtOpMuurImg,
       title: 'Opstijgend Vocht',
       description: 'Behandeling van opstijgend vocht met professionele injectietechnieken en vochtschermen.',
     },
     {
-      icon: Home,
-      title: 'Condensatie',
-      description: 'Verbetering van ventilatie en isolatie om condensatieproblemen te voorkomen.',
+      image: schimmelOpMuurImg,
+      title: 'Schimmel',
+      description: 'Schimmel in huis is ongezond en kan voor vieze vlekken zorgen. Wij zorgen ervoor dat het niet meer terugkomt.',
     },
     {
-      icon: Briefcase,
-      title: 'Lekkages & Schade',
-      description: 'Opsporing en reparatie van lekkages, gevolgd door herstel van vochtschade.',
+      image: condensatieImg,
+      title: 'Condensatie',
+      description: 'Verbetering van ventilatie en isolatie om condensatieproblemen te voorkomen.',
     },
   ];
 
@@ -150,13 +170,19 @@ function ServicesSection({ cityName }: { cityName: string }) {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow"
+              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1 duration-300"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-[#34B8C3] to-[#233D60] rounded-lg mb-6">
-                <service.icon className="text-white" size={28} strokeWidth={2} />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{service.description}</p>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -178,29 +204,43 @@ function ServicesSection({ cityName }: { cityName: string }) {
 function AboutSection({ cityName }: { cityName: string }) {
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
             Wie Is Kust Vochtbestrijding?
           </h2>
         </div>
 
-        <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-          <p>
-            Kust Vochtbestrijding is uw lokale specialist voor het behandelen van vochtproblemen in {cityName} en de ruime omgeving. Met meer dan 10 jaar ervaring hebben wij honderden woningen en bedrijfspanden geholpen om definitief van vochtoverlast af te komen.
-          </p>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1">
+            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+              <p>
+                Kust Vochtbestrijding is uw lokale specialist voor het behandelen van vochtproblemen in {cityName} en de ruime omgeving. Met meer dan 10 jaar ervaring hebben wij honderden woningen en bedrijfspanden geholpen om definitief van vochtoverlast af te komen.
+              </p>
 
-          <p>
-            Onze aanpak is grondig en klantgericht. We starten altijd met een gratis inspectie waarbij we de exacte oorzaak van uw vochtprobleem identificeren met professionele meetapparatuur. Op basis daarvan stellen we een duidelijk plan op met transparante prijsopgave.
-          </p>
+              <p>
+                Onze aanpak is grondig en klantgericht. We starten altijd met een gratis inspectie waarbij we de exacte oorzaak van uw vochtprobleem identificeren met professionele meetapparatuur. Op basis daarvan stellen we een duidelijk plan op met transparante prijsopgave.
+              </p>
 
-          <p>
-            Of het nu gaat om opstijgend vocht, condensatie, lekkages of schimmelvorming, wij bieden duurzame oplossingen met langdurige garantie. Onze technici zijn volledig gekwalificeerd en werken met de nieuwste technieken en kwalitatieve materialen.
-          </p>
+              <p>
+                Of het nu gaat om opstijgend vocht, condensatie, lekkages of schimmelvorming, wij bieden duurzame oplossingen met langdurige garantie. Onze technici zijn volledig gekwalificeerd en werken met de nieuwste technieken en kwalitatieve materialen.
+              </p>
 
-          <p className="font-semibold text-[#233D60]">
-            Voor bewoners van {cityName}: wij staan klaar om uw vochtprobleem snel en professioneel aan te pakken!
-          </p>
+              <p className="font-semibold text-[#233D60]">
+                Voor bewoners van {cityName}: wij staan klaar om uw vochtprobleem snel en professioneel aan te pakken!
+              </p>
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <div className="rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={aboutImage}
+                alt="Kust Vochtbestrijding specialist aan het werk"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -96,16 +96,16 @@ export default function Navbar() {
               </button>
 
               {isWerkgebiedOpen && (
-                <div className="absolute top-full left-0 mt-2 w-[500px] bg-white rounded-lg shadow-xl overflow-hidden z-50">
+                <div className="absolute top-full left-0 mt-2 w-[500px] bg-[#233D60] rounded-lg shadow-xl overflow-hidden z-50 border border-[#34B8C3]/30">
                   <div className="grid grid-cols-2 gap-0">
                     {cities.map((city, index) => (
                       <Link
                         key={index}
                         to={`/werkgebied/${city.slug}`}
                         onClick={() => setIsWerkgebiedOpen(false)}
-                        className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-[#34B8C3] hover:text-white transition-colors group border-b border-gray-100"
+                        className="flex items-center space-x-3 px-4 py-3 text-gray-200 hover:bg-[#34B8C3] hover:text-white transition-colors group border-b border-[#34B8C3]/20"
                       >
-                        <MapPin size={18} className="flex-shrink-0" />
+                        <MapPin size={18} className="flex-shrink-0 text-[#34B8C3] group-hover:text-white" />
                         <span className="text-sm font-medium">{city.name}</span>
                       </Link>
                     ))}
