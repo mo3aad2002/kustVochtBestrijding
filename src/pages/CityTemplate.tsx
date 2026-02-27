@@ -110,7 +110,7 @@ function TrustSection() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[#34B8C3]/10 rounded-full mb-4">
               <Users className="text-[#34B8C3]" size={32} strokeWidth={2} />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">2500+</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">500+</h3>
             <p className="text-gray-600">Tevreden klanten</p>
           </div>
 
