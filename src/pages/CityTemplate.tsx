@@ -3,7 +3,7 @@ import { Award, Users, Shield, CheckCircle2, Phone, Clock, Droplets } from 'luci
 import vochtOpMuurImg from '../assets/vocht_op_muur.png';
 import schimmelOpMuurImg from '../assets/schimmel_op_muur.png';
 import condensatieImg from '../assets/condensatie.jpg';
-import aboutImage from '../assets/0065fc17-c4e5-41dc-a19a-1ea18cb075a6.png';
+import aboutImage1 from '../assets/0065fc17-c4e5-41dc-a19a-1ea18cb075a6.png';
 import heroImageKust from '../assets/hero_image_kust_vocht.png';
 import beforeImage from '../assets/27f4a447-f38d-4a23-8259-a8befe0a7998.png';
 import afterImage from '../assets/e7cfb208-e60c-49fb-9013-ced35f7cab0a.png';
@@ -13,16 +13,17 @@ interface CityPageProps {
   cityName: string;
   mapEmbedUrl: string;
   heroImage?: string;
+  aboutImage?: string;
 }
 
-export default function CityTemplate({ cityName, mapEmbedUrl, heroImage }: CityPageProps) {
+export default function CityTemplate({ cityName, mapEmbedUrl, heroImage, aboutImage }: CityPageProps) {
   return (
     <div>
       <HeroSection cityName={cityName} heroImage={heroImage} />
       <TrustSection />
       <ServicesSection cityName={cityName} />
       <BeforeAfterSection cityName={cityName} />
-      <AboutSection cityName={cityName} />
+      <AboutSection cityName={cityName} aboutImage={aboutImage} />
       <MapSection cityName={cityName} mapEmbedUrl={mapEmbedUrl} />
       <CTASection cityName={cityName} />
     </div>
@@ -206,7 +207,9 @@ function ServicesSection({ cityName }: { cityName: string }) {
   );
 }
 
-function AboutSection({ cityName }: { cityName: string }) {
+function AboutSection({ cityName, aboutImage }: { cityName: string; aboutImage?: string }) {
+  const defaultAboutImage = aboutImage1;
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -240,7 +243,7 @@ function AboutSection({ cityName }: { cityName: string }) {
           <div className="order-1 md:order-2">
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
-                src={aboutImage}
+                src={aboutImage || defaultAboutImage}
                 alt="Kust Vochtbestrijding specialist aan het werk"
                 className="w-full h-full object-cover"
               />
