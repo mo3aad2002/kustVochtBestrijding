@@ -12,7 +12,6 @@ import vochtImage3 from '../assets/3646fab1-235e-450b-8198-51dccfc52325.png';
 import vochtImage4 from '../assets/5a2c50ba-8ce8-4695-94d6-9cd818759236.png';
 import vochtImage5 from '../assets/db14c3e3-88f8-49c4-b686-5832c0a98312.png';
 import vochtImage6 from '../assets/a46db951-dba9-450d-acf7-d53ceb163c37.png';
-import heroMoisturePro from '../assets/hero-moisture-professionals.png';
 
 export const cities: City[] = [
   {
@@ -61,7 +60,7 @@ export const cities: City[] = [
     name: 'Zuienkerke',
     slug: 'zuienkerke',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20164.948203247!2d3.165!3d51.273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dcde9f8d8c8d8d%3A0x8d8d8d8d8d8d8d8d!2sZuienkerke!5e0!3m2!1snl!2sbe!4v1234567890',
-    heroImage: heroMoisturePro,
+    heroImage: heroImageKust,
   },
   {
     name: 'Zedelgem',
@@ -109,7 +108,7 @@ export const cities: City[] = [
     name: 'Nieuwpoort',
     slug: 'nieuwpoort',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20164.948203247!2d2.745!3d51.129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dcde9f8d8c8d8d%3A0x8d8d8d8d8d8d8d8d!2sNieuwpoort!5e0!3m2!1snl!2sbe!4v1234567890',
-    heroImage: heroMoisturePro,
+    heroImage: vochtImage6,
   },
   {
     name: 'Koksijde',

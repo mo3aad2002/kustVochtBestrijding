@@ -31,7 +31,7 @@ export default function CityTemplate({ cityName, mapEmbedUrl, heroImage }: CityP
 
 function HeroSection({ cityName, heroImage }: { cityName: string; heroImage?: string }) {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden min-h-[500px] flex items-center">
       {heroImage ? (
         <>
           <div
@@ -40,7 +40,7 @@ function HeroSection({ cityName, heroImage }: { cityName: string; heroImage?: st
               backgroundImage: `url(${heroImage})`,
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#233D60]/90 via-[#2a4d6e]/85 to-[#34B8C3]/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#233D60]/75 via-[#2a4d6e]/70 to-[#34B8C3]/75" />
         </>
       ) : (
         <>
