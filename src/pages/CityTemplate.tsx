@@ -5,8 +5,8 @@ import schimmelOpMuurImg from '../assets/schimmel_op_muur.png';
 import condensatieImg from '../assets/condensatie.jpg';
 import aboutImage1 from '../assets/0065fc17-c4e5-41dc-a19a-1ea18cb075a6.png';
 import heroImageKust from '../assets/hero_image_kust_vocht.png';
-import beforeImage from '../assets/27f4a447-f38d-4a23-8259-a8befe0a7998.png';
-import afterImage from '../assets/e7cfb208-e60c-49fb-9013-ced35f7cab0a.png';
+import beforeImage from '../assets/mold1.png';
+import afterImage from '../assets/9c742f18-2f48-47ba-9096-1528c56b6836.png';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 
 interface CityPageProps {

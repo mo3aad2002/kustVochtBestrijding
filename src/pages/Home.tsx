@@ -5,8 +5,8 @@ import { useState } from 'react';
 import moistureInspectionImage from '../assets/Elektricien_(4).png';
 import heroImage from '../assets/hero_image_kust_vocht.png';
 import faqImage from '../assets/vochttt.png';
-import beforeImage from '../assets/27f4a447-f38d-4a23-8259-a8befe0a7998.png';
-import afterImage from '../assets/e7cfb208-e60c-49fb-9013-ced35f7cab0a.png';
+import beforeImage from '../assets/mold1.png';
+import afterImage from '../assets/9c742f18-2f48-47ba-9096-1528c56b6836.png';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 
 export default function Home() {
