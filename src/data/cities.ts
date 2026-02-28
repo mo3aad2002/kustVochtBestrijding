@@ -12,6 +12,7 @@ import vochtImage3 from '../assets/3646fab1-235e-450b-8198-51dccfc52325.png';
 import vochtImage4 from '../assets/5a2c50ba-8ce8-4695-94d6-9cd818759236.png';
 import vochtImage5 from '../assets/db14c3e3-88f8-49c4-b686-5832c0a98312.png';
 import vochtImage6 from '../assets/a46db951-dba9-450d-acf7-d53ceb163c37.png';
+import newHeroImage from '../assets/ChatGPT_Image_Feb_28,_2026,_12_36_24_PM.png';
 
 export const cities: City[] = [
   {
@@ -36,7 +37,7 @@ export const cities: City[] = [
     name: 'Oudenburg',
     slug: 'oudenburg',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20164.948203247!2d3.001!3d51.182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dcde9f8d8c8d8d%3A0x8d8d8d8d8d8d8d8d!2sOudenburg!5e0!3m2!1snl!2sbe!4v1234567890',
-    heroImage: vochtImage4,
+    heroImage: newHeroImage,
   },
   {
     name: 'De Haan',
@@ -84,7 +85,7 @@ export const cities: City[] = [
     name: 'Diksmuide',
     slug: 'diksmuide',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20164.948203247!2d2.864!3d51.033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dcde9f8d8c8d8d%3A0x8d8d8d8d8d8d8d8d!2sDiksmuide!5e0!3m2!1snl!2sbe!4v1234567890',
-    heroImage: vochtImage4,
+    heroImage: newHeroImage,
   },
   {
     name: 'Torhout',
@@ -132,7 +133,7 @@ export const cities: City[] = [
     name: 'Beernem',
     slug: 'beernem',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20164.948203247!2d3.332!3d51.146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dcde9f8d8c8d8d%3A0x8d8d8d8d8d8d8d8d!2sBeernem!5e0!3m2!1snl!2sbe!4v1234567890',
-    heroImage: vochtImage4,
+    heroImage: newHeroImage,
   },
   {
     name: 'Oostende',
